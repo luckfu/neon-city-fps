@@ -126,10 +126,17 @@ export class Game {
     this.hud.update(dt, this.weapons, this.player);
     this.camera.layers.set(0);
     this.composer.render();
+    const bg = this.scene.background;
+    const fog = this.scene.fog;
+    this.scene.background = null;
+    this.scene.fog = null;
+    this.renderer.setRenderTarget(null);
     this.renderer.autoClear = false;
     this.renderer.clearDepth();
     this.camera.layers.set(1);
     this.renderer.render(this.scene, this.camera);
+    this.scene.background = bg;
+    this.scene.fog = fog;
     this.camera.layers.enable(0);
     this.camera.layers.enable(1);
     this.renderer.autoClear = true;
