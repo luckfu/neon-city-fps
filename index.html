@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KIROSHI NIGHT — Neon City FPS</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>刀</text></svg>" />
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="c"></canvas>
+
+      <div id="hud" hidden>
+        <div class="crosshair" aria-hidden="true">
+          <span class="ch-h"></span>
+          <span class="ch-v"></span>
+          <span class="ch-dot"></span>
+        </div>
+
+        <div class="hit-marker" id="hitMarker"></div>
+        <div class="hurt-vignette" id="hurt"></div>
+        <div class="flash" id="flash"></div>
+
+        <div class="hp-wrap">
+          <div class="hp-label">VITAL</div>
+          <div class="hp-bar"><div class="hp-fill" id="hpFill"></div></div>
+        </div>
+
+        <div class="fps" id="fps">60</div>
+
+        <div class="ammo-block">
+          <div class="ammo-count"><span id="mag">12</span><span class="ammo-sep"> / </span><span id="reserve">32</span></div>
+          <div class="ammo-mode" id="ammoMode">AUTO</div>
+          <div class="ammo-pips" id="pips"></div>
+        </div>
+
+        <div class="slots" id="slots">
+          <button class="slot selected" data-slot="1" type="button">
+            <span class="slot-num">1</span>
+            <svg viewBox="0 0 64 24" class="slot-icon"><path d="M4 16 L18 16 L22 12 L58 8 L60 10 L24 16 L20 20 L4 20 Z" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+          </button>
+          <button class="slot" data-slot="2" type="button">
+            <span class="slot-num">2</span>
+            <svg viewBox="0 0 32 48" class="slot-icon phone"><rect x="8" y="4" width="16" height="40" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="16" cy="38" r="1.4" fill="currentColor"/></svg>
+          </button>
+          <button class="slot" data-slot="3" type="button">
+            <span class="slot-num">3</span>
+            <svg viewBox="0 0 64 28" class="slot-icon"><path d="M6 16 L18 16 L22 10 L50 10 L56 14 L58 14 L58 18 L50 18 L46 22 L20 22 L16 20 L6 20 Z M22 10 L24 6 L30 6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div id="overlay">
+        <div class="ov-bg"></div>
+        <div class="ov-card">
+          <p class="ov-kicker">DREAM LOOP / NIGHT CITY</p>
+          <h1>KIROSHI NIGHT</h1>
+          <p class="ov-sub">Rain. Neon. Steel. Hold the street.</p>
+          <ul class="controls">
+            <li><kbd>W A S D</kbd> Move</li>
+            <li><kbd>Hold V</kbd> + drag mouse — look <em>(required)</em></li>
+            <li><kbd>LMB</kbd> Fire / attack</li>
+            <li><kbd>1</kbd> Katana &nbsp; <kbd>2</kbd> Phone &nbsp; <kbd>3</kbd> Machine gun</li>
+            <li><kbd>R</kbd> Reload &nbsp; · &nbsp; click also requests pointer-lock</li>
+          </ul>
+          <button id="startBtn" type="button">CLICK TO ENTER</button>
+          <p class="ov-hint" id="ovMsg"></p>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

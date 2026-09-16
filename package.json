@@ -1,0 +1,18 @@
+{
+  "name": "neon-city-fps",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Playable Three.js neon-rain cyberpunk FPS demo",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview --host"
+  },
+  "dependencies": {
+    "three": "^0.170.0"
+  },
+  "devDependencies": {
+    "vite": "^6.0.3"
+  }
+}
