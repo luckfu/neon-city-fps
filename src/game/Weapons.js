@@ -32,7 +32,7 @@ export class Weapons {
     this.root.add(this.katana, this.phone, this.gun, fill, rim, this.muzzleLight);
     this.root.traverse((o) => o.layers.set(1));
     camera.layers.enable(1);
-    this.katana.scale.setScalar(1.05);
+    this.katana.scale.setScalar(1.22);
     this.#show(1);
   }
 
@@ -89,16 +89,17 @@ export class Weapons {
 
     if (this.slot === 1) {
       const s = this.swing > 0 ? Math.sin(this.swing * Math.PI) : 0;
-      this.katana.position.set(0.46, -0.4 - s * 0.04, -0.5);
-      const dir = new THREE.Vector3(0.78, 0.58 - s * 0.15, -0.18).normalize();
+      this.katana.position.set(0.32, -0.3 - s * 0.04, -0.5);
+      const dir = new THREE.Vector3(0.68, 0.66 - s * 0.15, -0.22).normalize();
       this.katana.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir);
+      this.katana.scale.setScalar(1.22);
     } else if (this.slot === 2) {
       this.phone.position.set(0.18, -0.16, -0.38);
       this.phone.rotation.set(-0.12, -0.2, 0.08);
     } else {
-      this.gun.position.set(0.2, -0.16 - this.recoil * 0.04, -0.36);
-      this.gun.rotation.set(0.08 + this.recoil * 0.08, 0.08, 0.02);
-      this.gun.scale.setScalar(1.35);
+      this.gun.position.set(0.22, -0.2 - this.recoil * 0.04, -0.4);
+      this.gun.rotation.set(0.1 + this.recoil * 0.08, 0.1, 0.03);
+      this.gun.scale.setScalar(1.15);
     }
 
     for (let i = this.tracers.length - 1; i >= 0; i--) {
@@ -268,10 +269,10 @@ function makeGun() {
   const barrel = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.05, 0.5), metal);
   barrel.position.set(0.01, 0.03, -0.38);
   const rail = new THREE.Mesh(
-    new THREE.BoxGeometry(0.02, 0.018, 0.28),
+    new THREE.BoxGeometry(0.016, 0.012, 0.22),
     new THREE.MeshBasicMaterial({ color: 0x5cf0ff, toneMapped: false }),
   );
-  rail.position.set(0.01, 0.08, -0.12);
+  rail.position.set(0.01, 0.075, -0.08);
   const stock = new THREE.Mesh(new THREE.BoxGeometry(0.07, 0.11, 0.2), dark);
   stock.position.set(0, -0.02, 0.28);
   const mag = new THREE.Mesh(new THREE.BoxGeometry(0.055, 0.18, 0.09), dark);

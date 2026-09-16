@@ -44,7 +44,7 @@ export function buildCity(scene, assets) {
     map: assets.windowTex,
     emissiveMap: assets.windowTex,
     emissive: new THREE.Color(0xffffff),
-    emissiveIntensity: 0.55,
+    emissiveIntensity: 0.85,
     roughness: 0.5,
     metalness: 0.18,
     color: 0x6a7380,
@@ -226,7 +226,7 @@ function addVerticalSign(group, map, { x, y, z, h, color, blinkers, lit }) {
     map,
     emissiveMap: map,
     emissive: 0xffffff,
-    emissiveIntensity: 1.6,
+    emissiveIntensity: 2.3,
     roughness: 0.25,
     metalness: 0.2,
   });
