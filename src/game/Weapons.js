@@ -32,6 +32,7 @@ export class Weapons {
     this.root.add(this.katana, this.phone, this.gun, fill, rim, this.muzzleLight);
     this.root.traverse((o) => o.layers.set(1));
     camera.layers.enable(1);
+    this.katana.scale.setScalar(1.4);
     this.#show(1);
   }
 
@@ -88,14 +89,15 @@ export class Weapons {
 
     if (this.slot === 1) {
       const s = this.swing > 0 ? Math.sin(this.swing * Math.PI) : 0;
-      this.katana.position.set(0.36, -0.34 - s * 0.06, -0.52);
-      this.katana.rotation.set(-0.82 - s * 0.9, -0.62 - s * 0.25, 0.18 - s * 0.7);
+      this.katana.position.set(0.34, -0.3 - s * 0.05, -0.48);
+      const dir = new THREE.Vector3(0.62, 0.72 - s * 0.2, -0.28).normalize();
+      this.katana.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir);
     } else if (this.slot === 2) {
-      this.phone.position.set(0.22, -0.18, -0.42);
-      this.phone.rotation.set(-0.18, -0.25, 0.12);
+      this.phone.position.set(0.18, -0.16, -0.38);
+      this.phone.rotation.set(-0.12, -0.2, 0.08);
     } else {
-      this.gun.position.set(0.18, -0.22 - this.recoil * 0.05, -0.48);
-      this.gun.rotation.set(0.12 + this.recoil * 0.08, 0.18, 0.04);
+      this.gun.position.set(0.16, -0.2 - this.recoil * 0.04, -0.42);
+      this.gun.rotation.set(0.1 + this.recoil * 0.08, 0.12, 0.03);
     }
 
     for (let i = this.tracers.length - 1; i >= 0; i--) {
@@ -227,7 +229,10 @@ function makeKatana(assets) {
   const blade = new THREE.Mesh(new THREE.BoxGeometry(0.01, 0.95, 0.032), bladeMat);
   blade.position.set(0.02, 0.62, 0.0);
   g.add(blade);
-  const hamon = new THREE.Mesh(new THREE.BoxGeometry(0.003, 0.92, 0.016), new THREE.MeshBasicMaterial({ color: 0xf4f7ff }));
+  const hamon = new THREE.Mesh(
+    new THREE.BoxGeometry(0.004, 0.92, 0.018),
+    new THREE.MeshBasicMaterial({ color: 0xf6fbff }),
+  );
   hamon.position.set(0.026, 0.62, 0.0);
   g.add(hamon);
 

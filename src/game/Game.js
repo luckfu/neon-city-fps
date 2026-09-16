@@ -28,7 +28,7 @@ export class Game {
       antialias: true,
       powerPreference: "high-performance",
     });
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.25));
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1));
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -63,6 +63,7 @@ export class Game {
     this.colliders = city.colliders;
     this.blinkers = city.blinkers;
     this.effects = createEffects(this.scene, this.camera, this.assets);
+    this.scene.add(this.camera);
     this.player = new Player(this.camera, this.colliders);
     this.weapons = new Weapons(this.camera, this.assets);
     this.enemies = new Enemies(this.scene, this.assets, this.player);

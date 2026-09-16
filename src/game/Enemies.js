@@ -175,13 +175,13 @@ function createEnemy(scene, spawn) {
   g.position.set(spawn.x, 0, spawn.z);
 
   const coat = new THREE.MeshStandardMaterial({
-    color: 0x1a1d24,
-    roughness: 0.55,
-    metalness: 0.25,
-    emissive: 0x05080c,
-    emissiveIntensity: 0.2,
+    color: 0x3a424c,
+    roughness: 0.5,
+    metalness: 0.22,
+    emissive: 0x101820,
+    emissiveIntensity: 0.35,
   });
-  const dark = new THREE.MeshStandardMaterial({ color: 0x111318, roughness: 0.6, metalness: 0.2 });
+  const dark = new THREE.MeshStandardMaterial({ color: 0x2a3038, roughness: 0.55, metalness: 0.2 });
 
   const body = new THREE.Mesh(new THREE.BoxGeometry(0.62, 0.9, 0.38), coat);
   body.position.y = 1.15;
@@ -214,17 +214,16 @@ function createEnemy(scene, spawn) {
   rifle.position.set(0.28, 1.18, 0.42);
   g.add(rifle);
 
-  const faceMat = new THREE.MeshStandardMaterial({
-    map: spawn.poster,
-    emissiveMap: spawn.poster,
-    emissive: 0xffffff,
-    emissiveIntensity: 0.28,
-    roughness: 0.45,
-  });
-  const headMats = [dark, dark, dark, dark, faceMat, dark];
-  const head = new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.48, 0.36), headMats);
-  head.position.y = 1.78;
-  g.add(head);
+  const skull = new THREE.Mesh(new THREE.BoxGeometry(0.36, 0.4, 0.32), dark);
+  skull.position.y = 1.78;
+  g.add(skull);
+
+  const face = new THREE.Mesh(
+    new THREE.PlaneGeometry(0.62, 0.78),
+    new THREE.MeshBasicMaterial({ map: spawn.poster, toneMapped: false }),
+  );
+  face.position.set(0, 1.82, 0.24);
+  g.add(face);
 
   const hit = new THREE.Mesh(
     new THREE.BoxGeometry(0.7, 1.8, 0.5),
@@ -239,6 +238,7 @@ function createEnemy(scene, spawn) {
     group: g,
     body,
     hit,
+    face,
     leftLeg,
     rightLeg,
     spawn: { x: spawn.x, z: spawn.z },

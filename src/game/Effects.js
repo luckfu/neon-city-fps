@@ -12,7 +12,7 @@ export function createEffects(scene, camera, assets) {
 }
 
 function createRain(scene) {
-  const count = 1600;
+  const count = 900;
   const positions = new Float32Array(count * 6);
   const speeds = new Float32Array(count);
   const origin = new THREE.Vector3();

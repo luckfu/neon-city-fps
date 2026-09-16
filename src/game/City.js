@@ -18,7 +18,7 @@ export function buildCity(scene, assets) {
   const moon = new THREE.DirectionalLight(0x88b4d8, 0.28);
   moon.position.set(18, 34, 8);
   moon.castShadow = true;
-  moon.shadow.mapSize.set(1024, 1024);
+  moon.shadow.mapSize.set(512, 512);
   moon.shadow.camera.near = 2;
   moon.shadow.camera.far = 90;
   moon.shadow.camera.left = -30;
@@ -112,8 +112,8 @@ export function buildCity(scene, assets) {
 function addGround(scene, assets) {
   const groundGeo = new THREE.PlaneGeometry(48, 110);
   const reflector = new Reflector(groundGeo, {
-    textureWidth: 512,
-    textureHeight: 512,
+    textureWidth: 384,
+    textureHeight: 384,
     color: 0x4a5660,
     clipBias: 0.003,
   });
