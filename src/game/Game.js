@@ -1,8 +1,4 @@
 import * as THREE from "three";
-import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
-import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
-import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
-import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { CFG } from "./config.js";
 import { Input } from "./Input.js";
 import { Player } from "./Player.js";
@@ -25,7 +21,7 @@ export class Game {
 
     this.renderer = new THREE.WebGLRenderer({
       canvas,
-      antialias: true,
+    antialias: false,
       powerPreference: "high-performance",
     });
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1));
@@ -33,22 +29,11 @@ export class Game {
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    this.renderer.toneMappingExposure = 0.78;
+    this.renderer.toneMappingExposure = 1.05;
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
 
     this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera(CFG.fov, window.innerWidth / window.innerHeight, CFG.near, CFG.far);
-
-    this.composer = new EffectComposer(this.renderer);
-    this.composer.addPass(new RenderPass(this.scene, this.camera));
-    this.bloom = new UnrealBloomPass(
-      new THREE.Vector2(window.innerWidth, window.innerHeight),
-      CFG.bloom.strength,
-      CFG.bloom.radius,
-      CFG.bloom.threshold,
-    );
-    this.composer.addPass(this.bloom);
-    this.composer.addPass(new OutputPass());
 
     this.input = new Input();
     this.hud = new HUD();
@@ -126,12 +111,11 @@ export class Game {
     this.effects.update(dt);
     this.hud.update(dt, this.weapons, this.player);
     this.camera.layers.set(0);
-    this.composer.render();
+    this.renderer.render(this.scene, this.camera);
     const bg = this.scene.background;
     const fog = this.scene.fog;
     this.scene.background = null;
     this.scene.fog = null;
-    this.renderer.setRenderTarget(null);
     this.renderer.autoClear = false;
     this.renderer.clearDepth();
     this.camera.layers.set(1);
@@ -149,8 +133,6 @@ export class Game {
     this.camera.aspect = w / h;
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(w, h);
-    this.composer.setSize(w, h);
-    this.bloom.setSize(w, h);
   }
 }
 

@@ -219,10 +219,10 @@ function createEnemy(scene, spawn) {
   g.add(skull);
 
   const face = new THREE.Mesh(
-    new THREE.PlaneGeometry(0.62, 0.78),
+    new THREE.PlaneGeometry(0.5, 0.62),
     new THREE.MeshBasicMaterial({ map: spawn.poster, toneMapped: false }),
   );
-  face.position.set(0, 1.82, 0.24);
+  face.position.set(0, 1.8, 0.22);
   g.add(face);
 
   const hit = new THREE.Mesh(

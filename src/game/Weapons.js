@@ -32,7 +32,7 @@ export class Weapons {
     this.root.add(this.katana, this.phone, this.gun, fill, rim, this.muzzleLight);
     this.root.traverse((o) => o.layers.set(1));
     camera.layers.enable(1);
-    this.katana.scale.setScalar(1.4);
+    this.katana.scale.setScalar(1.05);
     this.#show(1);
   }
 
@@ -89,15 +89,16 @@ export class Weapons {
 
     if (this.slot === 1) {
       const s = this.swing > 0 ? Math.sin(this.swing * Math.PI) : 0;
-      this.katana.position.set(0.34, -0.3 - s * 0.05, -0.48);
-      const dir = new THREE.Vector3(0.62, 0.72 - s * 0.2, -0.28).normalize();
+      this.katana.position.set(0.46, -0.4 - s * 0.04, -0.5);
+      const dir = new THREE.Vector3(0.78, 0.58 - s * 0.15, -0.18).normalize();
       this.katana.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir);
     } else if (this.slot === 2) {
       this.phone.position.set(0.18, -0.16, -0.38);
       this.phone.rotation.set(-0.12, -0.2, 0.08);
     } else {
-      this.gun.position.set(0.16, -0.2 - this.recoil * 0.04, -0.42);
-      this.gun.rotation.set(0.1 + this.recoil * 0.08, 0.12, 0.03);
+      this.gun.position.set(0.2, -0.16 - this.recoil * 0.04, -0.36);
+      this.gun.rotation.set(0.08 + this.recoil * 0.08, 0.08, 0.02);
+      this.gun.scale.setScalar(1.35);
     }
 
     for (let i = this.tracers.length - 1; i >= 0; i--) {
@@ -184,10 +185,10 @@ function makeKatana(assets) {
     clearcoat: 0.55,
     clearcoatRoughness: 0.25,
   });
-  const forearm = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.055, 0.34, 10), leather);
-  forearm.rotation.z = Math.PI / 2.4;
-  forearm.rotation.y = 0.35;
-  forearm.position.set(-0.08, -0.12, 0.1);
+  const forearm = new THREE.Mesh(new THREE.CylinderGeometry(0.032, 0.038, 0.18, 10), leather);
+  forearm.rotation.z = Math.PI / 2.2;
+  forearm.rotation.y = 0.4;
+  forearm.position.set(-0.1, -0.08, 0.08);
   g.add(forearm);
 
   const palm = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.055, 0.11), leather);
@@ -247,7 +248,7 @@ function makePhone() {
   );
   const screen = new THREE.Mesh(
     new THREE.PlaneGeometry(0.086, 0.168),
-    new THREE.MeshStandardMaterial({ color: 0x7af4ff, emissive: 0x3ae0ff, emissiveIntensity: 2.6 }),
+    new THREE.MeshBasicMaterial({ color: 0x7af4ff, toneMapped: false }),
   );
   screen.position.z = 0.008;
   const hand = new THREE.Mesh(
@@ -266,12 +267,17 @@ function makeGun() {
   const body = new THREE.Mesh(new THREE.BoxGeometry(0.09, 0.13, 0.42), metal);
   const barrel = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.05, 0.5), metal);
   barrel.position.set(0.01, 0.03, -0.38);
+  const rail = new THREE.Mesh(
+    new THREE.BoxGeometry(0.02, 0.018, 0.28),
+    new THREE.MeshBasicMaterial({ color: 0x5cf0ff, toneMapped: false }),
+  );
+  rail.position.set(0.01, 0.08, -0.12);
   const stock = new THREE.Mesh(new THREE.BoxGeometry(0.07, 0.11, 0.2), dark);
   stock.position.set(0, -0.02, 0.28);
   const mag = new THREE.Mesh(new THREE.BoxGeometry(0.055, 0.18, 0.09), dark);
   mag.position.set(0, -0.14, 0.04);
   const hand = new THREE.Mesh(new THREE.BoxGeometry(0.09, 0.08, 0.13), dark);
   hand.position.set(0.05, -0.12, 0.1);
-  g.add(body, barrel, stock, mag, hand);
+  g.add(body, barrel, rail, stock, mag, hand);
   return layer1(g);
 }

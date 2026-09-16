@@ -199,7 +199,7 @@ function addBillboard(group, map, { x, y, z, w, h, rotY }) {
     map,
     emissiveMap: map,
     emissive: 0xffffff,
-    emissiveIntensity: 0.42,
+    emissiveIntensity: 0.7,
     roughness: 0.35,
     metalness: 0.15,
   });
