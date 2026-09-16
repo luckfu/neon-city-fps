@@ -9,16 +9,16 @@ export function buildCity(scene, assets) {
   scene.add(group);
 
   scene.background = new THREE.Color(CFG.fog);
-  scene.fog = new THREE.FogExp2(CFG.fog, 0.016);
+  scene.fog = new THREE.FogExp2(CFG.fog, 0.018);
   scene.environment = assets.env;
-  scene.environmentIntensity = 0.42;
+  scene.environmentIntensity = 0.32;
 
   const hemi = new THREE.HemisphereLight(0x1c3a5c, 0x08060a, 0.38);
   scene.add(hemi);
-  const moon = new THREE.DirectionalLight(0x88b4d8, 0.42);
+  const moon = new THREE.DirectionalLight(0x88b4d8, 0.28);
   moon.position.set(18, 34, 8);
   moon.castShadow = true;
-  moon.shadow.mapSize.set(2048, 2048);
+  moon.shadow.mapSize.set(1024, 1024);
   moon.shadow.camera.near = 2;
   moon.shadow.camera.far = 90;
   moon.shadow.camera.left = -30;
@@ -35,19 +35,19 @@ export function buildCity(scene, assets) {
     map: assets.concreteDiff,
     normalMap: assets.concreteNor,
     roughnessMap: assets.concreteRough,
-    roughness: 0.72,
-    metalness: 0.08,
-    color: 0x8a92a4,
-    envMapIntensity: 0.35,
+    roughness: 0.78,
+    metalness: 0.06,
+    color: 0x3a404c,
+    envMapIntensity: 0.22,
   });
   const windowMat = new THREE.MeshStandardMaterial({
     map: assets.windowTex,
     emissiveMap: assets.windowTex,
     emissive: new THREE.Color(0xffffff),
-    emissiveIntensity: 1.15,
-    roughness: 0.45,
-    metalness: 0.2,
-    color: 0x9aa8b8,
+    emissiveIntensity: 0.55,
+    roughness: 0.5,
+    metalness: 0.18,
+    color: 0x6a7380,
   });
 
   const buildings = [
@@ -79,26 +79,32 @@ export function buildCity(scene, assets) {
     group.add(mesh);
   }
 
-  addBillboard(group, assets.billboards.kiroshi, { x: -7.42, y: 11.2, z: -10, w: 5.4, h: 8.4, rotY: Math.PI / 2 });
-  addBillboard(group, assets.billboards.future, { x: 7.42, y: 12.4, z: -18, w: 5.6, h: 8.8, rotY: -Math.PI / 2 });
-  addBillboard(group, assets.billboards.muse, { x: -7.42, y: 9.5, z: -30, w: 4.4, h: 6.8, rotY: Math.PI / 2 });
-  addBillboard(group, assets.billboards.chrome, { x: 7.42, y: 10.2, z: -40, w: 4.6, h: 7.2, rotY: -Math.PI / 2 });
-  addBillboard(group, assets.billboards.kiroshi, { x: -7.42, y: 8.4, z: -48, w: 4.2, h: 6.4, rotY: Math.PI / 2 });
-  addBillboard(group, assets.billboards.future, { x: 7.42, y: 14.5, z: -58, w: 5, h: 7.8, rotY: -Math.PI / 2 });
-  addBillboard(group, assets.billboards.chrome, { x: -7.42, y: 16, z: -62, w: 4.8, h: 7.4, rotY: Math.PI / 2 });
-  addBillboard(group, assets.billboards.muse, { x: 7.42, y: 8, z: -8, w: 3.6, h: 5.6, rotY: -Math.PI / 2 });
+  addBillboard(group, assets.billboards.kiroshi, { x: -7.42, y: 6.6, z: -9.5, w: 6.6, h: 10.2, rotY: Math.PI / 2 });
+  addBillboard(group, assets.billboards.future, { x: 7.42, y: 7.1, z: -14.5, w: 6.8, h: 10.6, rotY: -Math.PI / 2 });
+  addBillboard(group, assets.billboards.muse, { x: -7.42, y: 8.2, z: -28, w: 5.2, h: 8.0, rotY: Math.PI / 2 });
+  addBillboard(group, assets.billboards.chrome, { x: 7.42, y: 7.4, z: -36, w: 5.4, h: 8.4, rotY: -Math.PI / 2 });
+  addBillboard(group, assets.billboards.kiroshi, { x: -7.42, y: 6.2, z: -46, w: 5.0, h: 7.6, rotY: Math.PI / 2 });
+  addBillboard(group, assets.billboards.future, { x: 7.42, y: 12.2, z: -56, w: 5.6, h: 8.6, rotY: -Math.PI / 2 });
+  addBillboard(group, assets.billboards.chrome, { x: -7.42, y: 14, z: -62, w: 5.0, h: 7.6, rotY: Math.PI / 2 });
+  addBillboard(group, assets.billboards.muse, { x: 7.42, y: 5.6, z: -6.5, w: 4.4, h: 6.8, rotY: -Math.PI / 2 });
 
-  addVerticalSign(group, assets.signs.pink, { x: -7.35, y: 7.2, z: -4.2, h: 7.4, color: 0xff3d8a, blinkers });
-  addVerticalSign(group, assets.signs.cyan, { x: -7.35, y: 6.4, z: -21.5, h: 6.2, color: 0x3ee6ff, blinkers });
-  addVerticalSign(group, assets.signs.orange, { x: 7.35, y: 8.0, z: -7.5, h: 8.2, color: 0xff8a1a, blinkers });
-  addVerticalSign(group, assets.signs.pink, { x: 7.35, y: 6.8, z: -27, h: 6.6, color: 0xff2ea6, blinkers });
-  addVerticalSign(group, assets.signs.cyan, { x: -7.35, y: 9.5, z: -40, h: 8, color: 0x5cf0ff, blinkers });
+  addVerticalSign(group, assets.signs.pink, { x: -7.35, y: 5.4, z: -3.4, h: 8.2, color: 0xff3d8a, blinkers, lit: true });
+  addVerticalSign(group, assets.signs.cyan, { x: -7.35, y: 5.2, z: -19.5, h: 6.8, color: 0x3ee6ff, blinkers, lit: true });
+  addVerticalSign(group, assets.signs.orange, { x: 7.35, y: 6.2, z: -5.8, h: 9.0, color: 0xff8a1a, blinkers, lit: true });
+  addVerticalSign(group, assets.signs.pink, { x: 7.35, y: 5.6, z: -24, h: 7.0, color: 0xff2ea6, blinkers, lit: false });
+  addVerticalSign(group, assets.signs.cyan, { x: -7.35, y: 8.2, z: -40, h: 8, color: 0x5cf0ff, blinkers, lit: false });
   addHorizontalSign(group, assets.signs.night, { x: 0, y: 5.4, z: -72, w: 8, color: 0x5cf0ff, blinkers });
 
-  addTrafficLight(group, { x: 0.8, z: -34 });
+  addTrafficLight(group, { x: 0.8, z: -28 });
   addStreetLamps(group, blinkers);
   addVents(group);
   addCurbGlow(group);
+
+  const fillL = new THREE.PointLight(0xff4da6, 1.35, 18, 1.6);
+  fillL.position.set(-4.5, 3.2, -2);
+  const fillR = new THREE.PointLight(0x3ec8ff, 1.25, 18, 1.6);
+  fillR.position.set(4.5, 3.0, -4);
+  group.add(fillL, fillR);
 
   return { colliders, blinkers };
 }
@@ -106,9 +112,9 @@ export function buildCity(scene, assets) {
 function addGround(scene, assets) {
   const groundGeo = new THREE.PlaneGeometry(48, 110);
   const reflector = new Reflector(groundGeo, {
-    textureWidth: 1024,
-    textureHeight: 1024,
-    color: 0x6a7a88,
+    textureWidth: 512,
+    textureHeight: 512,
+    color: 0x4a5660,
     clipBias: 0.003,
   });
   reflector.rotation.x = -Math.PI / 2;
@@ -123,13 +129,13 @@ function addGround(scene, assets) {
       normalMap: assets.asphaltNor,
       roughnessMap: assets.asphaltRough,
       color: 0x1a1d24,
-      metalness: 0.62,
-      roughness: 0.18,
+      metalness: 0.72,
+      roughness: 0.12,
       clearcoat: 1,
-      clearcoatRoughness: 0.12,
-      envMapIntensity: 1.55,
+      clearcoatRoughness: 0.08,
+      envMapIntensity: 1.7,
       transparent: true,
-      opacity: 0.78,
+      opacity: 0.7,
       reflectivity: 0.9,
     }),
   );
@@ -214,13 +220,13 @@ function addBillboard(group, map, { x, y, z, w, h, rotY }) {
   void inward;
 }
 
-function addVerticalSign(group, map, { x, y, z, h, color, blinkers }) {
-  const w = 0.7;
+function addVerticalSign(group, map, { x, y, z, h, color, blinkers, lit }) {
+  const w = 0.85;
   const mat = new THREE.MeshStandardMaterial({
     map,
     emissiveMap: map,
     emissive: 0xffffff,
-    emissiveIntensity: 1.8,
+    emissiveIntensity: 1.6,
     roughness: 0.25,
     metalness: 0.2,
   });
@@ -228,10 +234,14 @@ function addVerticalSign(group, map, { x, y, z, h, color, blinkers }) {
   mesh.position.set(x, y, z);
   mesh.rotation.y = x < 0 ? Math.PI / 2 : -Math.PI / 2;
   group.add(mesh);
-  const light = new THREE.PointLight(color, 4.8, 16, 1.6);
-  light.position.set(x + (x < 0 ? 1.2 : -1.2), y, z);
-  group.add(light);
-  blinkers.push({ mesh, light, base: 1.8, phase: Math.random() * Math.PI * 2, kind: "neon" });
+  if (lit) {
+    const light = new THREE.PointLight(color, 2.1, 14, 1.7);
+    light.position.set(x + (x < 0 ? 1.4 : -1.4), y, z);
+    group.add(light);
+    blinkers.push({ mesh, light, base: 1.6, phase: Math.random() * Math.PI * 2, kind: "neon" });
+  } else {
+    blinkers.push({ mesh, light: null, base: 1.6, phase: Math.random() * Math.PI * 2, kind: "neon" });
+  }
 }
 
 function addHorizontalSign(group, map, { x, y, z, w, color, blinkers }) {
@@ -246,7 +256,7 @@ function addHorizontalSign(group, map, { x, y, z, w, color, blinkers }) {
   );
   mesh.position.set(x, y, z);
   group.add(mesh);
-  const light = new THREE.PointLight(color, 3.5, 18, 1.7);
+  const light = new THREE.PointLight(color, 1.6, 16, 1.8);
   light.position.set(x, y, z + 1.5);
   group.add(light);
   blinkers.push({ mesh, light, base: 1.6, phase: 1.2, kind: "neon" });
@@ -272,13 +282,13 @@ function addTrafficLight(group, { x, z }) {
   );
   lamp.position.set(x, 5.28, z - 0.12);
   group.add(lamp);
-  const light = new THREE.PointLight(0xff2030, 2.2, 12, 2);
+  const light = new THREE.PointLight(0xff2030, 1.1, 10, 2);
   light.position.set(x, 5.2, z);
   group.add(light);
 }
 
 function addStreetLamps(group, blinkers) {
-  for (const z of [8, -6, -22, -38, -54]) {
+  for (const z of [-22, -54]) {
     for (const x of [-6.6, 6.6]) {
       const pole = new THREE.Mesh(
         new THREE.CylinderGeometry(0.05, 0.07, 4.4, 6),
@@ -286,10 +296,10 @@ function addStreetLamps(group, blinkers) {
       );
       pole.position.set(x, 2.2, z);
       group.add(pole);
-      const light = new THREE.PointLight(x < 0 ? 0xff66cc : 0x66e0ff, 2.4, 11, 1.8);
+      const light = new THREE.PointLight(x < 0 ? 0xff66cc : 0x66e0ff, 0.9, 10, 2);
       light.position.set(x * 0.82, 4.1, z);
       group.add(light);
-      blinkers.push({ mesh: null, light, base: 2.4, phase: z * 0.2, kind: "lamp" });
+      blinkers.push({ mesh: null, light, base: 0.9, phase: z * 0.2, kind: "lamp" });
     }
   }
 }
@@ -326,6 +336,6 @@ export function updateCity(blinkers, t) {
   for (const b of blinkers) {
     const flick = 0.82 + 0.18 * Math.sin(t * 4 + b.phase) + (Math.random() < 0.01 ? -0.35 : 0);
     if (b.mesh?.material) b.mesh.material.emissiveIntensity = b.base * flick;
-    if (b.light) b.light.intensity = (b.kind === "lamp" ? 2.2 : 4.2) * flick;
+    if (b.light) b.light.intensity = (b.kind === "lamp" ? 0.85 : 2.0) * flick;
   }
 }

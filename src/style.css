@@ -68,7 +68,7 @@ canvas#c { display: block; width: 100%; height: 100%; cursor: crosshair; }
 
 .fps {
   position: absolute; top: 18px; right: 22px;
-  font-size: 12px; color: rgba(120, 220, 255, 0.45); letter-spacing: 0.08em;
+  font-size: 13px; color: rgba(160, 235, 255, 0.75); letter-spacing: 0.08em;
 }
 
 .ammo-block { position: absolute; left: 36px; bottom: 34px; }

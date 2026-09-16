@@ -13,12 +13,12 @@ export class Enemies {
     this._ray = new THREE.Raycaster();
 
     const spots = [
-      { x: -2.4, z: -15.5, poster: assets.posterA },
-      { x: 1.6, z: -23.2, poster: assets.posterB },
-      { x: 3.2, z: -21.4, poster: assets.posterA },
-      { x: -3.4, z: -36, poster: assets.posterB },
-      { x: 2.2, z: -44, poster: assets.posterA },
-      { x: -1.1, z: -52, poster: assets.posterB },
+      { x: -2.35, z: -8.2, poster: assets.posterA },
+      { x: 1.55, z: -13.6, poster: assets.posterB },
+      { x: 3.15, z: -12.1, poster: assets.posterA },
+      { x: -3.3, z: -22, poster: assets.posterB },
+      { x: 2.2, z: -30, poster: assets.posterA },
+      { x: -1.1, z: -38, poster: assets.posterB },
     ];
     for (const s of spots) this.list.push(createEnemy(scene, s));
   }
@@ -222,8 +222,8 @@ function createEnemy(scene, spawn) {
     roughness: 0.45,
   });
   const headMats = [dark, dark, dark, dark, faceMat, dark];
-  const head = new THREE.Mesh(new THREE.BoxGeometry(0.32, 0.38, 0.32), headMats);
-  head.position.y = 1.72;
+  const head = new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.48, 0.36), headMats);
+  head.position.y = 1.78;
   g.add(head);
 
   const hit = new THREE.Mesh(
@@ -234,6 +234,7 @@ function createEnemy(scene, spawn) {
   g.add(hit);
 
   scene.add(g);
+  g.scale.setScalar(1.18);
   return {
     group: g,
     body,

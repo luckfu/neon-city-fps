@@ -12,7 +12,7 @@ export function createEffects(scene, camera, assets) {
 }
 
 function createRain(scene) {
-  const count = 2400;
+  const count = 1600;
   const positions = new Float32Array(count * 6);
   const speeds = new Float32Array(count);
   const origin = new THREE.Vector3();
@@ -22,9 +22,9 @@ function createRain(scene) {
   const geo = new THREE.BufferGeometry();
   geo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
   const mat = new THREE.LineBasicMaterial({
-    color: 0xa8d8ff,
+    color: 0xc5e4ff,
     transparent: true,
-    opacity: 0.28,
+    opacity: 0.45,
     depthWrite: false,
   });
   const lines = new THREE.LineSegments(geo, mat);
@@ -84,7 +84,7 @@ function createSteam(scene, map) {
     for (let i = 0; i < 7; i++) {
       const s = new THREE.Sprite(mat.clone());
       s.position.set(x, y + Math.random() * 1.4, z);
-      const sc = 0.8 + Math.random() * 1.3;
+      const sc = 1.3 + Math.random() * 1.8;
       s.scale.set(sc, sc * 1.4, 1);
       s.userData = {
         ox: x,
@@ -107,7 +107,7 @@ function createSteam(scene, map) {
         s.position.x = u.ox + Math.sin(u.t * 0.8) * 0.25;
         s.position.z = u.oz + Math.cos(u.t * 0.6) * 0.2;
         const k = (u.t % u.life) / u.life;
-        s.material.opacity = 0.32 * (1 - k) * (k < 0.15 ? k / 0.15 : 1);
+        s.material.opacity = 0.5 * (1 - k) * (k < 0.15 ? k / 0.15 : 1);
         if (k > 0.98) {
           s.position.y = 0.45;
           u.t = 0;

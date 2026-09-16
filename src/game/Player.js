@@ -12,7 +12,7 @@ export class Player {
     this.colliders = colliders;
     this.yaw = 0;
     this.pitch = -0.04;
-    this.position = new THREE.Vector3(0, CFG.eye, 11.5);
+    this.position = new THREE.Vector3(0, CFG.eye, 6.8);
     this.hp = CFG.playerHp;
     this.alive = true;
     this.hurtCd = 0;
@@ -24,7 +24,7 @@ export class Player {
   reset() {
     this.yaw = 0;
     this.pitch = -0.04;
-    this.position.set(0, CFG.eye, 11.5);
+    this.position.set(0, CFG.eye, 6.8);
     this.hp = CFG.playerHp;
     this.alive = true;
     this.hurtCd = 0;

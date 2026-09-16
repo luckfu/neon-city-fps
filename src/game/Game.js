@@ -28,12 +28,12 @@ export class Game {
       antialias: true,
       powerPreference: "high-performance",
     });
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.25));
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    this.renderer.toneMappingExposure = 0.92;
+    this.renderer.toneMappingExposure = 0.78;
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
 
     this.scene = new THREE.Scene();
@@ -124,7 +124,15 @@ export class Game {
     updateCity(this.blinkers, this.time);
     this.effects.update(dt);
     this.hud.update(dt, this.weapons, this.player);
+    this.camera.layers.set(0);
     this.composer.render();
+    this.renderer.autoClear = false;
+    this.renderer.clearDepth();
+    this.camera.layers.set(1);
+    this.renderer.render(this.scene, this.camera);
+    this.camera.layers.enable(0);
+    this.camera.layers.enable(1);
+    this.renderer.autoClear = true;
   }
 
   #resize() {

@@ -1,8 +1,8 @@
 export const CFG = {
-  fov: 62,
-  near: 0.08,
+  fov: 68,
+  near: 0.05,
   far: 180,
-  eye: 1.58,
+  eye: 1.52,
   moveSpeed: 5.7,
   lookSens: 0.00215,
   playerRadius: 0.42,
@@ -28,6 +28,6 @@ export const CFG = {
   enemyFireInterval: 1.15,
   enemySpeed: 1.85,
 
-  bloom: { strength: 0.62, radius: 0.55, threshold: 0.28 },
-  fog: 0x08101a,
+  bloom: { strength: 0.38, radius: 0.42, threshold: 0.72 },
+  fog: 0x070c14,
 };

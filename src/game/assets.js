@@ -185,9 +185,9 @@ export function makeWindowTexture() {
   const bh = 1024 / rows;
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < cols; x++) {
-      if (Math.random() < 0.22) continue;
+      if (Math.random() < 0.48) continue;
       const warm = Math.random() < 0.28;
-      const a = 0.35 + Math.random() * 0.65;
+      const a = 0.18 + Math.random() * 0.4;
       ctx.fillStyle = warm
         ? `rgba(255, 170, 90, ${a})`
         : `rgba(80, 210, 255, ${a})`;
